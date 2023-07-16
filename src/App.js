@@ -45,7 +45,7 @@ function App() {
 	}
 
 	const [sortOrder, setSortOrder] = useState('desc');
-	
+
 	const sortExpenses = (order) => {
 		let sortedExpenses = [...expenses];
 	
@@ -73,6 +73,32 @@ function App() {
 	return (
 		<div className="app">
 			<NewExpense onAddNewExpense={addNewExpenseHandler} />
+				<div className="buttons">
+					<button
+					className={sortOrder === 'desc' ? 'active' : ''}
+					onClick={() => sortExpenses('desc')}
+					>
+					По убыванию
+					</button>
+					<button
+					className={sortOrder === 'asc' ? 'active' : ''}
+					onClick={() => sortExpenses('asc')}
+					>
+					По возрастанию
+					</button>
+					<button
+					className={sortOrder === 'newest' ? 'active' : ''}
+					onClick={() => sortExpenses('newest')}
+					>
+					По новизне
+					</button>
+					<button
+					className={sortOrder === 'name' ? 'active' : ''}
+					onClick={() => sortExpenses('name')}
+					>
+					По имени
+					</button>
+				</div>
 			<Expenses
 				expenses={expenses}
 				onDeleteExpense={deleteExpenseByIdHandler}
