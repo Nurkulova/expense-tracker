@@ -44,6 +44,32 @@ function App() {
 		)
 	}
 
+	const [sortOrder, setSortOrder] = useState('desc');
+	
+	const sortExpenses = (order) => {
+		let sortedExpenses = [...expenses];
+	
+		switch (order) {
+		  case 'desc':
+			sortedExpenses.sort((a, b) => b.amount - a.amount);
+			break;
+		  case 'asc':
+			sortedExpenses.sort((a, b) => a.amount - b.amount);
+			break;
+		  case 'newest':
+			sortedExpenses.sort((a, b) => b.date - a.date);
+			break;
+		  case 'name':
+			sortedExpenses.sort((a, b) => a.title.localeCompare(b.title));
+			break;
+		  default:
+			break;
+		}
+	
+		setExpenses(sortedExpenses);
+		setSortOrder(order);
+	  };
+
 	return (
 		<div className="app">
 			<NewExpense onAddNewExpense={addNewExpenseHandler} />
