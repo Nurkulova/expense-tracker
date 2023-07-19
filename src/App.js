@@ -1,7 +1,42 @@
 import { useState } from 'react'
 import Expenses from './components/expenses/Expenses'
 import NewExpense from './components/new-expense/NewExpense'
-import './App.css';
+import styled from 'styled-components';
+
+const AppWrapper = styled.div`
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+`;
+
+const ButtonsWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+  margin: 20px 0;
+`;
+
+const StyledButton = styled.button`
+  margin: 0 1rem;
+  color: black;
+  background-color: purple;
+  font-weight: 600;
+  height: 51px;
+  padding: 16px 18px;
+  border-radius: 10px;
+  color: white;
+  border: none;
+
+  &:hover {
+    cursor: pointer;
+    background-color: rgb(105, 13, 135);
+  }
+
+  &.active {
+    background-color: rgb(105, 13, 135);
+    color: white;
+  }
+`;
+
 const EXPENSES = [
 	{
 		id: 'e1',
@@ -71,39 +106,36 @@ function App() {
 	  };
 
 	return (
-		<div className="app">
-			<NewExpense onAddNewExpense={addNewExpenseHandler} />
-				<div className="buttons">
-					<button
-					className={sortOrder === 'desc' ? 'active' : ''}
-					onClick={() => sortExpenses('desc')}
-					>
-					По убыванию
-					</button>
-					<button
-					className={sortOrder === 'asc' ? 'active' : ''}
-					onClick={() => sortExpenses('asc')}
-					>
-					По возрастанию
-					</button>
-					<button
-					className={sortOrder === 'newest' ? 'active' : ''}
-					onClick={() => sortExpenses('newest')}
-					>
-					По новизне
-					</button>
-					<button
-					className={sortOrder === 'name' ? 'active' : ''}
-					onClick={() => sortExpenses('name')}
-					>
-					По имени
-					</button>
-				</div>
-			<Expenses
-				expenses={expenses}
-				onDeleteExpense={deleteExpenseByIdHandler}
-			/>
-		</div>
+		<AppWrapper>
+      <NewExpense onAddNewExpense={addNewExpenseHandler} />
+      <ButtonsWrapper>
+        <StyledButton
+          className={sortOrder === 'desc' ? 'active' : ''}
+          onClick={() => sortExpenses('desc')}
+        >
+          По убыванию
+        </StyledButton>
+        <StyledButton
+          className={sortOrder === 'asc' ? 'active' : ''}
+          onClick={() => sortExpenses('asc')}
+        >
+          По возрастанию
+        </StyledButton>
+        <StyledButton
+          className={sortOrder === 'newest' ? 'active' : ''}
+          onClick={() => sortExpenses('newest')}
+        >
+          По новизне
+        </StyledButton>
+        <StyledButton
+          className={sortOrder === 'name' ? 'active' : ''}
+          onClick={() => sortExpenses('name')}
+        >
+          По имени
+        </StyledButton>
+      </ButtonsWrapper>
+      <Expenses expenses={expenses} onDeleteExpense={deleteExpenseByIdHandler} />
+    </AppWrapper>
 	)
 }
 

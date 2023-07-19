@@ -2,6 +2,7 @@ import React from 'react'
 import { Input } from './Input'
 import './FormInput.css'
 
+
 const FormInput = ({
 	inputType = 'text',
 	onChange,

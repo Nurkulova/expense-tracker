@@ -1,11 +1,28 @@
 import React from 'react'
-import './Button.css'
+import styled from 'styled-components';
+
+const StyledButton = styled.button`
+  height: 51px;
+  padding: 16px 18px;
+  border-radius: 10px;
+  background: #4a026b;
+  color: white;
+  outline: none;
+  border: none;
+  cursor: pointer;
+
+  &:hover,
+  &:active {
+    background-color: #510674;
+    border-color: #510674;
+  }
+`;
 
 const Button = ({ children, onClick, ...rest }) => {
 	return (
-		<button onClick={onClick} {...rest}>
-			{children}
-		</button>
+		<StyledButton onClick={onClick} {...rest}>
+          {children}
+        </StyledButton>
 	)
 }
 

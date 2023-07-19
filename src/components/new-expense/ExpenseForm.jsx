@@ -1,7 +1,24 @@
 import React, { useState } from 'react'
 import FormInput from '../UI/input/FormInput'
 import Button from '../UI/button/Button'
-import './ExpenseForm.css'
+import styled from 'styled-components';
+
+const ExpenseFormWrapper = styled.form`
+  .new-expense__controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    text-align: left;
+  }
+
+  .new-expense__actions {
+    text-align: right;
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-end;
+  }
+`;
 
 const ExpenseForm = ({ onCloseForm, onAddNewExpense }) => {
 	const [title, setTitle] = useState('')
@@ -49,14 +66,13 @@ const ExpenseForm = ({ onCloseForm, onAddNewExpense }) => {
 	}
 
 	return (
-		<form onSubmit={submitHandler}>
+		<ExpenseFormWrapper form onSubmit={submitHandler}>
 			<div className='new-expense__controls'>
 				<FormInput
 					label={'Заголовок'}
 					type='text'
 					onChange={titleChangeHandler}
 					value={title}
-					// ref={titleRef}
 				/>
 				<FormInput
 					label={'Количество'}
@@ -77,16 +93,10 @@ const ExpenseForm = ({ onCloseForm, onAddNewExpense }) => {
 				</Button>
 				<Button type='submit'>Добавить расходы</Button>
 			</div>
-		</form>
+		</ExpenseFormWrapper >
 	)
 }
 
 export default ExpenseForm
 
-// git init
-// git add .
-// git commit -m "message"
-// git branch -M feature/old-name feature/new-name
 
-// git checkout
-//
