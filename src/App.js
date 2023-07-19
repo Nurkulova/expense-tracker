@@ -79,7 +79,7 @@ function App() {
 		)
 	}
 
-	const [sortOrder, setSortOrder] = useState('desc');
+	const [sortOrder, setSortOrder] = useState('');
 
 	const sortExpenses = (order) => {
 		let sortedExpenses = [...expenses];
